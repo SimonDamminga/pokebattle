@@ -1,9 +1,9 @@
 <?php 
 
 class Charmeleon extends Pokemon{
-    public function __construct(){
+    public function __construct($name = 'Charmeleon'){
         parent::__construct(
-            'Charmeleon',
+            $name,
             'Fire',
             60,
             new Weakness('Water', 2),
@@ -17,9 +17,9 @@ class Charmeleon extends Pokemon{
 
     public function defend($counterAttack, $enemy){
         if($enemy->energyType == $this->weakness->energyType){
-            $damageDone = $counterAttack->damage * $this->weakness->multyplier;
+            $damageDone = $counterAttack * $this->weakness->multyplier;
         }else{
-            $damageDone = $counterAttack->damage;
+            $damageDone = $counterAttack;
         }
 
         if($this->resistance->energyType == $enemy->energyType){

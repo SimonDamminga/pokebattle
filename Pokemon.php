@@ -22,4 +22,25 @@ class Pokemon{
     public function __toString(){
         return json_encode($this);
     }
+
+    public function defend($counterAttack, $enemy){
+        if($enemy != NULL){
+            if($enemy->energyType == $this->weakness->energyType){
+                $damageDone = $counterAttack * $this->weakness->multyplier;
+            }else{
+                $damageDone = $counterAttack;
+            }
+
+            if($this->resistance->energyType == $enemy->energyType){
+                $damageDone = $damageDone - $this->resistance->value;
+            }
+
+
+            $this->health = $this->health - $damageDone;
+            $this->hitpoints = $this->health;
+
+            print_r('<br><b>' . $this->name. ' </b><br>');
+            print_r('<p> Health left: <b>' . $this->health . 'HP</b></p>');            
+        }
+    }
 }
